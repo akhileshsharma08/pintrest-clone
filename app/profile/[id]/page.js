@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
@@ -13,7 +14,7 @@ const Profile = () => {
   const [user, setUser] = useState(null);
   const [userPosts, setUserPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   const {id} = useParams()
 
   useEffect(() => {
@@ -66,15 +67,15 @@ const Profile = () => {
           <p>{Math.floor(Math.random() * 100)} Followers</p>
           <div className="fileUploader flex justify-center gap-2 font-semibold mt-2 mx-auto">
             <Link href={`/createpin/${id}`}>
-              <p className="bg-red-600 hover:bg-red-700 text-white rounded-full px-8 py-2">
+              <p className="bg-red-600 hover:bg-red-700 md:text-lg text-sm text-white rounded-full px-8 py-2">
                 Create Pin
               </p>
             </Link>
 
-            <p className="px-4 py-2 rounded-full bg-zinc-200 hover:bg-zinc-300">
+            <p className="px-4 py-2 rounded-full bg-zinc-200 md:text-lg text-sm hover:bg-zinc-300">
               Share
             </p>
-            <p className="px-4 py-2 rounded-full bg-zinc-200 hover:bg-zinc-300">
+            <p className="px-4 py-2 rounded-full bg-zinc-200 md:text-lg text-sm hover:bg-zinc-300">
               Edit Profile
             </p>
           </div>

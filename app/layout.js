@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import { AuthProvider } from "./SessionProvider";
 import { getServerSession } from "next-auth";
+import { ContextProvider } from "./context/MyContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -15,12 +16,12 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider session={session}>
+        <ContextProvider >
           <div>
             <Header />
             {children}
           </div>
-        </AuthProvider>
+        </ContextProvider>
       </body>
     </html>
   );
