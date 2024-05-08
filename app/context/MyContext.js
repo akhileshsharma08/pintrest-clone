@@ -9,26 +9,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 const MyContext = createContext();
 
 export function ContextProvider({ children }) {
-  const [userDetails, setUserDetails] = useState([]);
-  const [PostDetails, setPostDetails] = useState([]);
-
-
-
-  useEffect(() => {
-    const getUserDetails = async () => {
-      try {
-        const res = await axios.get('/api/user');
-        setUserDetails(res.data.data._id);
-      } catch (error) {
-        console.error("Error fetching user details:", error);
-      }
-    };
-
-    getUserDetails();
-  }, []);
-
+  const [userDetails, setUserDetails] = useState({});
+  const [PostDetails, setPostDetails] = useState({});
  
-
   return (
     <MyContext.Provider value={{ userDetails, setUserDetails ,PostDetails, setPostDetails}}>
       {children}

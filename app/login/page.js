@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Logo from '@/public/assets/plogo.svg'
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
+import { FetchDetails } from "../context/MyContext";
 
 // import Cookies from 'js-cookie';
 
@@ -15,8 +16,10 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [loading,setLoading] = useState(false)
-  const router = useRouter()
+  const [loading, setLoading] = useState(false);
+  const { setUserDetails } = FetchDetails();
+  const router = useRouter();
+
 
   const handleInputText = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -33,6 +36,7 @@ const Login = () => {
         email: loginData.email,
         password: loginData.password,
       });
+      setUserDetails(response.data)
       console.log(response)
       if (response.error) {
         setError(response.error);
