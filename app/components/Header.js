@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,13 +13,17 @@ import axios from "axios";
 import { FetchDetails } from "../context/MyContext";
 
 const Header = () => {
-  // const { data: session } = useSession();
+ 
   const router = useRouter();
-  const [session, setSession] = useState(true);
+  const [session, setSession] = useState({});
   const pathname = usePathname();
-  const { userDetails,setUserDetails } = FetchDetails();
+  const { userDetails,setUserDetails ,PostDetails} = FetchDetails();
 
-  // alert(pathname)
+  useEffect(()=>{
+setSession(userDetails)
+  },[userDetails])
+
+ 
   console.log(session, "sess");
 
   const handleLogout = async () => {
@@ -28,13 +32,13 @@ const Header = () => {
       console.log("Logout successful!");
       localStorage.clear();
       sessionStorage.clear();
-      setUserDetails(null)
+      setSession(null)
       router.push("/login");
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(userDetails,"usd")
+ 
   return (
     <>
       <nav
@@ -141,7 +145,7 @@ const Header = () => {
         </ul>
         {/* End Navlinks */}
         <ul className="flex  justify-end items-center gap-1 ulRight">
-          {!userDetails?.userId ? (
+          {!session?.userId ? (
             <>
               <Link href={"/login"}>
                 <li className="font-semibold md:text-sm text-base bg-red-600 hover:bg-red-700 text-white md:p-2 p-1 rounded-full">
@@ -159,11 +163,11 @@ const Header = () => {
               <p className="text-zinc-400 text-2xl hover:bg-zinc-100 p-2 rounded-full">
                 <FaBell />
               </p>
-              <p className="text-zinc-400 text-2xl hover:bg-zinc-100 p-2 rounded-full">
+              <p className="text-zinc-400 hidden text-2xl hover:bg-zinc-100 p-2 rounded-full">
                 <AiFillMessage />
               </p>
               <Link
-                href={"/profile"}
+                href={`/profile/${userDetails.userId}`}
                 className="text-zinc-400 text-2xl hover:bg-zinc-100 hover:text-red-600 px-4 py-2 rounded-full"
               >
                 <FaCircleUser />

@@ -8,13 +8,13 @@ const Today = () => {
     <>
       <div className="text-center my-6">
         <h5 className="text-lg">{new Date().toLocaleDateString("en-IN")}</h5>
-        <h1 className="text-4xl  my-2">Stay inspired</h1>
+        <h1 className="text-4xl  my-2">Stay updated</h1>
       </div>
       <div
         className="mt-7 px-2 md:px-5
      columns-2 md:columns-3
      lg:columns-4 mb-4
-     xl:columns-5 space-y-6 mx-auto"
+     xl:columns-5 space-y-3 mx-auto"
       >
         {/* <div className="cards-grid grid grid-cols-2 md:grid-cols-3 mt-8 px-4 lg:grid-cols-4 md:gap-4 gap-1 justify-center"> */}
         {todayCards.map((item, index) => (
@@ -29,11 +29,11 @@ const Today = () => {
               width={500}
               height={500}
               className="rounded-3xl 
-        cursor-pointer relative z-0 hover:opacity-70  "
+        cursor-pointer relative z-0 w-full hover:opacity-70  "
             />
-            <div className="absolute left-1/2 w-3/4 -translate-x-1/2 text-lg bottom-6 text-white">
-              <p className="underline font-bold">{item.category}</p>
-              <p className="w-full">{item.title}</p>
+            <div className="absolute left-1/2 w-3/4 -translate-x-1/2 md:text-base text-xs bottom-2 text-white">
+              <p className="underline hidden font-bold">{item.category}</p>
+              <p className="w-full  hidden">{item.title}</p>
             </div>
           </div>
         ))}

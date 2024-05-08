@@ -12,7 +12,7 @@ export async function GET(request, { params }) {
     const { id } = params;
     await connectMongoDb();
     const user = await User.findOne({ _id: id });    
-    console.log("User from database:", user);
+    // console.log("User from database:", user);
     if (!user || user.length === 0) {
         return NextResponse.json({ message: 'No user found', status: 404 });
     }

@@ -39,7 +39,7 @@ const Watch = () => {
               className="object-fit   ease-in-out duration-100"
               layout="fill"
             />
-            <div className="text absolute left-1/2 w-2/3 -translate-x-1/2 md:text-2xl text-sm bottom-10 font-bold capitalize text-zinc-50">
+            <div className="text absolute left-1/2 w-2/3 -translate-x-1/2 md:text-xl text-sm bottom-4 font-bold capitalize text-zinc-50">
               <p className="underline">{item.category}</p>
               <p className="">{item.title}</p>
             </div>
@@ -50,8 +50,8 @@ const Watch = () => {
       <div
         className="mt-7 px-2 md:px-5
      columns-2 md:columns-3
-     lg:columns-4 mb-4
-     xl:columns-5 space-y-6 mx-auto"
+     lg:columns-4 mb-4 
+     xl:columns-5 space-y-3 mx-auto"
       >
           {/* <div className="cards-grid grid grid-cols-2 md:grid-cols-3 mt-8 px-4 lg:grid-cols-4 md:gap-4 gap-1 justify-center"> */}
           {watchCards.map((item, index) => (
@@ -68,7 +68,7 @@ const Watch = () => {
                 className="rounded-3xl 
         cursor-pointer relative z-0 hover:opacity-70  "
               />
-            <p className="absolute left-1/2 w-3/4 -translate-x-1/2 text-lg bottom-6 text-white">
+            <p className="absolute hidden left-1/2 w-3/4 -translate-x-1/2 text-lg bottom-6 text-white">
               {item.title}
             </p>
           </div>

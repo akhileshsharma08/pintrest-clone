@@ -14,7 +14,6 @@ const PinBuilder = () => {
   const [postData, setPostData] = useState({});
   const [file, setFile] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
-  const { data: session } = useSession();
   const imageId = uuidv4();
   const {id} =useParams()
 
@@ -58,7 +57,7 @@ const PinBuilder = () => {
         imageURL: imageName,
       });
       if (postResponse) {
-        console.log("Post created successfully");
+        toast.success("Post created successfully");
         router.push(`/profile/${id}`);
       }
     } catch (error) {
@@ -141,7 +140,7 @@ const PinBuilder = () => {
         <div className="w-1/4 text-center">
           <p
             onClick={HandleSavePin}
-            className="px-8 py-4  my-4 text-lg text-white rounded-full bg-red-600 hover:bg-red-700 font-semibold"
+            className="px-6 py-3 text-center my-4 md:text-lg text-base text-white rounded-full bg-red-600 hover:bg-red-700 font-semibold"
           >
             Save
           </p>

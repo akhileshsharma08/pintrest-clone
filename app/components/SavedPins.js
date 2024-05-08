@@ -17,7 +17,7 @@ const SavedPins = () => {
     <div className="headings font-bold text-center my-4 w-full">
       <h5 className="text-lg">{new Date().toLocaleDateString("en-IN")}</h5>
       <h1 className="text-4xl my-2">Stay inspired</h1>
-      <div className="mt-7 px-2 md:px-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-6 gap-2 mx-auto">
+      <div className="mt-7 px-2 md:px-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-4 gap-2 mx-auto">
         {exploreCards.map((item, index) => (
           <Link key={index} href={`/pin/${item.id}`}>
             <div className="relative rounded-3xl cursor-pointer hover:bg-gray-800 md:hover:scale-105 transition-all ease-in">
@@ -27,12 +27,12 @@ const SavedPins = () => {
                   alt={item.title}
                   width={500}
                   height={500}
-                  className="rounded-3xl cursor-pointer"
+                  className="rounded-3xl h-full cursor-pointer"
                 />
               ) : (
                 <img src={item.cardImage} alt={item.title} /> // Fallback for server-side rendering
               )}
-              <p className="absolute left-1/2 w-3/4 -translate-x-1/2 text-lg bottom-10 text-white">
+              <p className="absolute hidden left-1/2 w-3/4 -translate-x-1/2 text-lg bottom-4 text-white">
                 {item.title}
               </p>
             </div>
