@@ -9,14 +9,16 @@ import CreatedPins from "@/app/components/CreatedPins";
 import { useSession } from "next-auth/react";
 import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
+import { FetchDetails } from "@/app/context/MyContext";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [userPosts, setUserPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-  // const { data: session } = useSession();
-  const {id} = useParams()
+  const { PostDetails} = FetchDetails();
 
+  const {id} = useParams()
+// console.log(PostDetails,"pst")
   useEffect(() => {
     fetchUserData();
     fetchPostsData();
@@ -99,10 +101,10 @@ const Profile = () => {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="Created">
-              <CreatedPins data={userPosts} />
+              <CreatedPins data={PostDetails} />
             </TabsContent>
             <TabsContent value="Saved">
-              <SavedPins />
+              <SavedPins data={PostDetails} />
             </TabsContent>
           </Tabs>
         </div>

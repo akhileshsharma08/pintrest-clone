@@ -14,7 +14,7 @@ export async function GET(request, { params }) {
   try {
     const { id } = params;
     await connectMongoDb();
-    const userPosts = await Post.find({ _id: id });    
+    const userPosts = await Post.find({ userId: id });    
     console.log("userPosts from database:", userPosts);
     if (!userPosts || userPosts.length === 0) {
         return NextResponse.json({ message: 'No userPosts found', status: 404 });

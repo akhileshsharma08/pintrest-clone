@@ -14,6 +14,7 @@ const PinBuilder = () => {
   const [postData, setPostData] = useState({});
   const [file, setFile] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
+  const [loading,setLoading]= useState(false)
   const imageId = uuidv4();
   const {id} =useParams()
 
@@ -45,6 +46,7 @@ const PinBuilder = () => {
       imageURL.append("file", file, imageName);
 
       // Upload file
+      setLoading(true)
       const uploadResponse = await axios.post("/api/upload", imageURL);
       if (uploadResponse.status === 200) {
         console.log("File uploaded successfully");
@@ -58,6 +60,7 @@ const PinBuilder = () => {
       });
       if (postResponse) {
         toast.success("Post created successfully");
+        setLoading(false)
         router.push(`/profile/${id}`);
       }
     } catch (error) {
@@ -140,9 +143,10 @@ const PinBuilder = () => {
         <div className="w-1/4 text-center">
           <p
             onClick={HandleSavePin}
+            
             className="px-6 py-3 text-center my-4 md:text-lg text-base text-white rounded-full bg-red-600 hover:bg-red-700 font-semibold"
           >
-            Save
+            {loading?"processing...":"Save"}
           </p>
         </div>
       </div>

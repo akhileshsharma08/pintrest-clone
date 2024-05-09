@@ -8,17 +8,26 @@ import { FaGrinHearts } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge"
-import { exploreCards } from "../utils/ExploreCards";
+import { FetchDetails } from "@/app/context/MyContext";
 
 const Pin = () => {
   const { id } = useParams();
-  const [filteredItem, setFilteredItem] = useState(null);
-  useEffect(() => {
-    const singleCard = exploreCards.find((item) => item.id === id);
-    setFilteredItem(singleCard)
-}, [id]);
+  const [filteredItem, setFilteredItem] = useState([]);
+  const { PostDetails } = FetchDetails();
+  console.log(PostDetails,"pstt")
 
-  if (!filteredItem) return <div>Loading...</div>;
+   useEffect(() => {
+         const singleCard = PostDetails.filter((el) => el._id === id);  
+        setFilteredItem(singleCard[0])
+    console.log(singleCard,"dds")
+    }, [id,PostDetails]);
+   
+
+  // Check if filteredItem is null or undefined before accessing its properties
+//   if (!filteredItem) {
+//     return <div>Loading...</div>;
+//   }
+
   return (
     <>
   <div className="main bg-zinc-100">
@@ -26,7 +35,7 @@ const Pin = () => {
     <div className="cardbox md:flex-row flex-col flex justify-center border rounded-lg shadow-3xl bg-white text-gray-800">
     <div className="md:w-1/2 relative full md:h-[40vw] h-[40vh] w-full overflow-hidden">
               <Image
-                src={`${filteredItem.cardImage}`}
+                src={`/assets/uploads/${filteredItem?.imageURL}`}
                 alt={filteredItem.title}
                 layout="fill"
                 className="rounded-t-[20px] w-full object-fit "

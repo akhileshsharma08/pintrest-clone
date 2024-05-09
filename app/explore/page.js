@@ -2,22 +2,23 @@ import React from "react";
 import { exploreCards } from "../utils/ExploreCards";
 import Image from "next/image";
 import Link from "next/link";
+import CommonPins from "../components/CommonPins";
 
 const Explore = () => {
   return (
     <>
       <div className="headings font-bold text-center my-4">
-        {/* <h5 className="text-lg">28 April 2024</h5> */}
         <h5 className="text-lg">{new Date().toLocaleDateString("en-IN")}</h5>
         <h1 className="text-4xl  my-2">Stay exploring</h1>
+        <CommonPins/>
         <div
           className="mt-7 px-2 md:px-5
      columns-2 md:columns-3
      lg:columns-4 mb-4
      xl:columns-5 space-y-3 mx-auto"
         >
-          {/* <div className="cards-grid grid grid-cols-2 md:grid-cols-3 mt-8 px-4 lg:grid-cols-4 md:gap-4 gap-1 justify-center"> */}
           {exploreCards.map((item, index) => (
+            <Link href={`/pin/${item.id}`}>
             <div
               className="relative rounded-3xl 
               cursor-pointer hover:bg-gray-800 hover:scale-105 transition-all ease-in "
@@ -36,6 +37,8 @@ const Explore = () => {
                 {item.title}
               </p>
             </div>
+            </Link>
+            
           ))}
         </div>
         <div className="sample text-center font-bold my-10">

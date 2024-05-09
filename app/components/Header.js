@@ -24,7 +24,7 @@ setSession(userDetails)
   },[userDetails])
 
  
-  console.log(session, "sess");
+  // console.log(session, "sess");
 
   const handleLogout = async () => {
     try {

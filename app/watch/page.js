@@ -3,6 +3,7 @@ import { exploreCards } from "../utils/ExploreCards";
 import Image from "next/image";
 import Link from "next/link";
 import { watchCards } from "../utils/watchCards";
+import CommonPins from "../components/CommonPins";
 
 const Watch = () => {
   const trial = [
@@ -46,6 +47,7 @@ const Watch = () => {
           </div>
         ))}
       </div>
+      <CommonPins/>
       {/* --------------- */}
       <div
         className="mt-7 px-2 md:px-5
